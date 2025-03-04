@@ -1,6 +1,10 @@
-from routes import create_app
+from flask import Flask
+from routes.parking import parking_bp
+from routes.user import user_bp
 
-app = create_app()
+app = Flask(__name__)
+app.register_blueprint(parking_bp, url_prefix='/parking')
+app.register_blueprint(user_bp, url_prefix='/user')
 
 
 if __name__ == '__main__':
