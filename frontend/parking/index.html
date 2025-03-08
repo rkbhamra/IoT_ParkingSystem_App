@@ -16,14 +16,12 @@
   <body>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-sm-auto bg-light sticky-top">
-          <div class="d-flex flex-sm-column flex-row flex-nowrap bg-light align-items-center sticky-top">
-            <a class="d-block p-3 pt-sm-4 link-dark text-decoration-none">
+        <div class="col-sm-auto bg-light d-flex">
+          <div class="d-flex flex-sm-column flex-row bg-light flex-grow-1">
+            <a class="d-block p-3 pt-sm-4 link-dark text-decoration-none align-self-center">
               <i class="fa-solid fa-font-awesome fs-3"></i>
             </a>
-            <ul
-              class="nav nav-pills nav-flush flex-sm-column flex-row flex-nowrap mx-auto text-center align-items-center"
-            >
+            <ul class="nav flex-sm-column flex-row mx-auto text-center align-items-center">
               <li class="nav-item">
                 <a href="../home/" class="nav-link py-3 px-2">
                   <i class="fa-solid fa-house"></i>
@@ -36,8 +34,12 @@
                   <p class="m-0">Parking</p>
                 </a>
               </li>
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
             </ul>
-            <div class="dropdown">
+            <hr class="mt-auto" />
+            <div class="dropdown align-self-center pb-sm-3">
               <a
                 href="#"
                 class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle"
@@ -53,8 +55,8 @@
           </div>
         </div>
         <div class="col-sm p-3 min-vh-100">
-          <h1>Parking</h1>
-          <canvas></canvas>
+          <h1 class="p-3">Parking</h1>
+          <div id="parking"></div>
         </div>
       </div>
     </div>

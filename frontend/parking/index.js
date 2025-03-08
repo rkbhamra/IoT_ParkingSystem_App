@@ -1,25 +1,75 @@
-canvas = document.querySelector("canvas");
-ctx = canvas.getContext("2d");
-canvas.width = 800;
-canvas.height = 600;
+const parking = document.getElementById("parking");
+const parkingSpots = {
+  1: {
+    status: "occupied",
+    time: "2021-09-01T12:00:00Z",
+  },
+  2: {
+    status: "free",
+  },
+  3: {
+    status: "occupied",
+    time: "2021-09-01T12:00:00Z",
+  },
+  4: {
+    status: "reserved",
+    time: "2021-09-01T12:00:00Z",
+  },
+  5: {
+    status: "free",
+  },
+  6: {
+    status: "free",
+  },
+  7: {
+    status: "free",
+  },
+  8: {
+    status: "free",
+  },
+  9: {
+    status: "free",
+  },
+  10: {
+    status: "free",
+  },
+};
 
-function drawParkingLot() {
-  ctx.fillStyle = "#808080";
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
+function createParkingSpotElement(n, spot) {
+  const spotElement = document.createElement("div");
+  spotElement.className = "col-2 p-4 text-center border";
+  if (spot.status === "occupied") {
+    spotElement.classList.add("bg-danger", "text-white");
+  } else if (spot.status === "reserved") {
+    spotElement.classList.add("bg-warning", "text-dark");
+  } else {
+    spotElement.classList.add("bg-success", "text-white");
+  }
+  spotElement.innerText = `${n}`;
+  spotElement.onclick = () => (window.location.href = `../reserve/?spot=${n}`);
+  return spotElement;
+}
 
-  const numSpacesX = 5;
-  const numSpacesY = 2;
-  const spaceWidth = canvas.width / numSpacesX;
-  const spaceHeight = canvas.height / numSpacesY;
+function renderParkingSpots() {
+  let row = document.createElement("div");
+  row.className = "row g-3";
+  let count = 0;
 
-  for (let i = 0; i < numSpacesX; i++) {
-    for (let j = 0; j < numSpacesY; j++) {
-      ctx.fillStyle = "#FFFFFF";
-      ctx.fillRect(i * spaceWidth, j * spaceHeight, 5, spaceHeight);
-      ctx.fillRect(i * spaceWidth, j * spaceHeight, spaceWidth, 5);
+  for (const [n, spot] of Object.entries(parkingSpots)) {
+    if (count == 5) {
+      parking.appendChild(row);
+      row = document.createElement("div");
+      row.className = "row g-3";
+      count = 0;
     }
+
+    row.appendChild(createParkingSpotElement(n, spot));
+    count++;
+  }
+
+  if (count > 0) {
+    parking.appendChild(row);
   }
 }
 
-drawParkingLot();
-// random ass boxes for now
+renderParkingSpots();
