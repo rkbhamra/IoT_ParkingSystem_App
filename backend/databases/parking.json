@@ -1,0 +1,34 @@
+{
+  "1": {
+    "status": "free",
+    "time": ""
+  },
+  "2": {
+    "status": "free",
+    "time": ""
+  },
+  "3": {
+    "status": "free",
+    "time": ""
+  },
+  "4": {
+    "status": "occupied",
+    "time": ""
+  },
+  "5": {
+    "status": "occupied",
+    "time": ""
+  },
+  "6": {
+    "status": "occupied",
+    "time": ""
+  },
+  "7": {
+    "status": "occupied",
+    "time": ""
+  },
+  "8": {
+    "status": "occupied",
+    "time": ""
+  }
+}

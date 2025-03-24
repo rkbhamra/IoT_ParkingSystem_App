@@ -7,8 +7,10 @@ def get_db(file):
 
 
 def save_db(file, data):
+    print("Saving database...")
     with open('databases/' + file, 'w') as f:
         json.dump(data, f, indent=4)
+
 
 def run_file(file):
     result = subprocess.run(['python', file], capture_output=True, text=True)

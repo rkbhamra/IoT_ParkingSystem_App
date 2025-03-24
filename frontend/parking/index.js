@@ -1,39 +1,4 @@
 const parking = document.getElementById("parking");
-const parkingSpots = {
-  1: {
-    status: "occupied",
-    time: "2021-09-01T12:00:00Z",
-  },
-  2: {
-    status: "free",
-  },
-  3: {
-    status: "occupied",
-    time: "2021-09-01T12:00:00Z",
-  },
-  4: {
-    status: "reserved",
-    time: "2021-09-01T12:00:00Z",
-  },
-  5: {
-    status: "free",
-  },
-  6: {
-    status: "free",
-  },
-  7: {
-    status: "free",
-  },
-  8: {
-    status: "free",
-  },
-  9: {
-    status: "free",
-  },
-  10: {
-    status: "free",
-  },
-};
 
 function createParkingSpotElement(n, spot) {
   const spotElement = document.createElement("div");
@@ -50,13 +15,18 @@ function createParkingSpotElement(n, spot) {
   return spotElement;
 }
 
-function renderParkingSpots() {
+async function renderParkingSpots() {
+  const parkingSpots = await fetch(`http://localhost:5000/parking/test`, { method: "GET" }).then((res) => res.json());
+
+  // Clear existing parking spots
+  parking.innerHTML = "";
+
   let row = document.createElement("div");
   row.className = "row g-3";
   let count = 0;
 
   for (const [n, spot] of Object.entries(parkingSpots)) {
-    if (count == 5) {
+    if (count == 2) {
       parking.appendChild(row);
       row = document.createElement("div");
       row.className = "row g-3";
@@ -72,4 +42,5 @@ function renderParkingSpots() {
   }
 }
 
-renderParkingSpots();
+// Render parking spots every 1 second
+setInterval(renderParkingSpots, 1000);

@@ -7,6 +7,7 @@ CLIENT_SECRET = "TuyWTybxhZA2Zhj65Cw2jcuKJa7vfZh9GyJy0mNrUb4gZzW33whWNcd0RRm44GU
 TOKEN_URL = "https://api2.arduino.cc/iot/v1/clients/token"
 AUDIENCE = "https://api2.arduino.cc/iot"
 
+
 def get_access_token():
     response = requests.post(TOKEN_URL, data={
         "grant_type": "client_credentials",
@@ -21,37 +22,33 @@ def get_access_token():
         print("Failed to get token:", response.json())
         return None, None  
 
-access_token, expires_in = get_access_token()
-
-expires_at = time.time() + (expires_in if expires_in else 3600)  
 
 def ensure_valid_token():
-    global access_token, expires_at
     if time.time() >= expires_at: 
         access_token, expires_in = get_access_token()
         expires_at = time.time() + (expires_in if expires_in else 3600)
+        return access_token
+
 
 def get_dashboards():
-    ensure_valid_token()  
+    access_token, expires_in = get_access_token()
     headers = {"Authorization": f"Bearer {access_token}"}
     response = requests.get("https://api2.arduino.cc/iot/v2/dashboards", headers=headers)
     return response.json()
 
-raw = get_dashboards()  
 
-variables_data = []
+def get_variables():
+    raw = get_dashboards()
+    variables_data = {}
 
-for dashboard in raw:  
-    for widget in dashboard["widgets"]:  
-        widget_name = widget["options"]["name"] if "options" in widget else "Unknown"
-        for variable in widget.get("variables", []): 
-            variables_data.append({
-                "spot": widget_name,
-                "resistor": variable["name"], #leo to take this out if he doesnt need it
-                "free": variable["last_value"]
-            })
+    for dashboard in raw:  
+        for widget in dashboard["widgets"]:  
+            widget_name = widget["options"]["name"] if "options" in widget else "Unknown"
+            for variable in widget.get("variables", []):
+                variables_data[widget_name.split()[1]] = {
+                    "spot": widget_name,
+                    "resistor": variable["name"],
+                    "free": variable["last_value"]
+                }
 
-with open("backend\\databases\\lot_data.json", "w+") as f:
-    json.dump(variables_data, f, indent = 4)
-
-#print(variables_data)
+    return variables_data
