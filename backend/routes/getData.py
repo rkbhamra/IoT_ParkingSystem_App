@@ -47,8 +47,11 @@ for dashboard in raw:
         for variable in widget.get("variables", []): 
             variables_data.append({
                 "spot": widget_name,
-                "resistor": variable["name"], #leo take this out if you dont need it
+                "resistor": variable["name"], #leo to take this out if he doesnt need it
                 "free": variable["last_value"]
             })
 
-print(variables_data)
+with open("backend\\databases\\lot_data.json", "w+") as f:
+    json.dump(variables_data, f, indent = 4)
+
+#print(variables_data)

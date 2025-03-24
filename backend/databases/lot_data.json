@@ -1,0 +1,22 @@
+[
+    {
+        "spot": "Spot 1",
+        "resistor": "photoResistor0",
+        "free": true
+    },
+    {
+        "spot": "Spot 2",
+        "resistor": "photoResistor2",
+        "free": false
+    },
+    {
+        "spot": "Spot 6",
+        "resistor": "photoResistor3",
+        "free": true
+    },
+    {
+        "spot": "Spot 7",
+        "resistor": "photoResistor1",
+        "free": true
+    }
+]
