@@ -12,6 +12,7 @@ function createParkingSpotElement(n, spot) {
   }
   spotElement.innerText = `${n}`;
   spotElement.onclick = () => (window.location.href = `../reserve/?spot=${n}`);
+
   return spotElement;
 }
 
@@ -41,6 +42,14 @@ async function renderParkingSpots() {
     parking.appendChild(row);
   }
 }
+
+const loadingSpinner = document.createElement("div");
+loadingSpinner.className = "spinner-border text-primary";
+loadingSpinner.role = "status";
+loadingSpinner.innerHTML = '<span class="visually-hidden">Loading...</span>';
+parking.innerHTML = "";
+parking.appendChild(loadingSpinner);
+firstLoad = true;
 
 // Render parking spots every 1 second
 setInterval(renderParkingSpots, 1000);

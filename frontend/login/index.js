@@ -7,9 +7,12 @@ function login() {
     .then((data) => {
       console.log(data);
       if (data.success) {
+        localStorage.setItem("user", username);
         window.location.href = "../home";
       } else {
         alert("Invalid username or password");
       }
     });
 }
+
+localStorage.removeItem("user");

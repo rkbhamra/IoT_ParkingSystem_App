@@ -1,5 +1,8 @@
 {
-  "leo": {
-    "password": "123"
-  }
+    "leo": {
+        "password": "123"
+    },
+    "test": {
+        "password": "123"
+    }
 }
