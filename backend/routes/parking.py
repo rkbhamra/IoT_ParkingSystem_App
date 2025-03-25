@@ -22,6 +22,7 @@ def update_parking():
             reservation_time = timezone.localize(datetime.datetime.strptime(r['time'], '%Y-%m-%d %H:%M'))
             if reservation_time <= current_time <= reservation_time + datetime.timedelta(minutes=30):
                 parking[spot]['status'] = 'reserved'
+                parking[spot]['time'] = (reservation_time + datetime.timedelta(minutes=30)).strftime('%Y-%m-%d %H:%M')
                 print('Spot reserved')
                 lst.remove(r)
             elif current_time > reservation_time + datetime.timedelta(minutes=30):
@@ -31,7 +32,11 @@ def update_parking():
     for k, v in data.items():
         if parking[k]['status'] != 'reserved' or not v['free']:
             parking[k]['status'] = ('free' if v['free'] else 'occupied')
-            
+        if parking[k]['status'] == 'reserved':
+            t = timezone.localize(datetime.datetime.strptime(parking[k]['time'], '%Y-%m-%d %H:%M'))
+            if t < current_time:
+                parking[k]['status'] = 'free'
+                parking[k]['time'] = ''
 
 
 @parking_bp.route('/test', methods=['GET'])

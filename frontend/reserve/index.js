@@ -21,8 +21,7 @@ function reserve() {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
-      // window.location.href = `../confirm/?status=${data.status}`;
+      window.location.href = `../confirm/?status=${data.status}`;
     });
 }
 

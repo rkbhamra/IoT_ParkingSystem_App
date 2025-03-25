@@ -1,1 +1,27 @@
-{"1": {"status": "occupied"}, "2": {"status": "occupied"}, "3": {"status": "occupied"}, "4": {"status": "reserved"}, "5": {"status": "occupied"}, "6": {"status": "occupied"}, "7": {"status": "occupied"}, "8": {"status": "occupied"}}
+{
+    "1": {
+        "status": "occupied"
+    },
+    "2": {
+        "status": "occupied"
+    },
+    "3": {
+        "status": "occupied"
+    },
+    "4": {
+        "status": "reserved",
+        "time": "2025-03-25 14:30"
+    },
+    "5": {
+        "status": "occupied"
+    },
+    "6": {
+        "status": "occupied"
+    },
+    "7": {
+        "status": "occupied"
+    },
+    "8": {
+        "status": "occupied"
+    }
+}
