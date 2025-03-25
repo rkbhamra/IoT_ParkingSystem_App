@@ -78,6 +78,10 @@ function populateTimeSelect() {
   });
 }
 
+window.onbeforeunload = function () {
+  fetch(`http://localhost:5000/parking/save`, { method: "GET" });
+};
+
 async function init() {
   reservations = await fetch(`http://localhost:5000/parking/reserve/${spot}`, { method: "GET" }).then((res) =>
     res.json()

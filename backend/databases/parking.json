@@ -6,11 +6,12 @@
         "status": "occupied"
     },
     "3": {
-        "status": "occupied"
+        "status": "occupied",
+        "time": "2025-03-25 16:00"
     },
     "4": {
-        "status": "reserved",
-        "time": "2025-03-25 14:30"
+        "status": "free",
+        "time": ""
     },
     "5": {
         "status": "occupied"

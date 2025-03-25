@@ -19,6 +19,13 @@ def signup(username, password):
     if username in users:
         return jsonify({'message': 'Username already exists', 'success': False})
     
-    users[username] = {'password': password}
+    users[username] = {'password': password, 'reservations': []}
     utils.save_db('users.json', users)
     return jsonify({'message': 'Signup successful', 'success': True})
+
+@user_bp.route('/<username>', methods=['GET'])
+def get_user(username):
+    users = utils.get_db('users.json')
+    if username not in users:
+        return jsonify({'message': 'Username not found', 'success': False})
+    return jsonify(users[username])

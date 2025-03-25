@@ -55,6 +55,7 @@ def get_reservations(spot):
 @parking_bp.route('/reserve/<spot>', methods=['POST'])
 def reserve_spot(spot):
     global parking, reservations
+    userdb = utils.get_db('users.json')
 
     req = json.loads(request.data)
     time = req.get('time')
@@ -68,8 +69,24 @@ def reserve_spot(spot):
         'plate': plate,
         'user': user
     })
+
+    userdb[user]['reservations'].append({
+        'spot': spot,
+        'time': time,
+        'make': make,
+        'plate': plate
+    })
     
     update_parking()
+    utils.save_db('users.json', userdb)
+    utils.save_db('parking.json', parking)
+    utils.save_db('reservations.json', reservations)
+    return jsonify({'status': 'success'})
+
+
+@parking_bp.route('/save', methods=['GET'])
+def update():
+    global parking, reservations
     utils.save_db('parking.json', parking)
     utils.save_db('reservations.json', reservations)
     return jsonify({'status': 'success'})
