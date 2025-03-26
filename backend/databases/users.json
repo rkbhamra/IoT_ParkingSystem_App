@@ -1,13 +1,6 @@
 {
     "leo": {
         "password": "123",
-        "reservations": [
-            {
-                "spot": "4",
-                "time": "2025-03-26 14:00",
-                "make": "toyota",
-                "plate": "abc123"
-            }
-        ]
+        "reservations": []
     }
 }

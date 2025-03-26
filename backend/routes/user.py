@@ -9,6 +9,7 @@ user_bp = Blueprint('user', __name__)
 def get_surge_pricing():
     reservations = utils.get_db('reservations.json')
     count = 0
+    base_price = 2.0
     timezone = pytz.timezone('Canada/Eastern')
     current_time = datetime.datetime.now(timezone)
 
@@ -18,9 +19,10 @@ def get_surge_pricing():
             if reservation_time <= current_time <= reservation_time + datetime.timedelta(minutes=30):
                 count += 1
 
-    print('Surge reservations:')
-    print(count)
-    return 2
+    if 11 <= current_time.hour < 16:
+        base_price *= 1.4
+
+    return base_price * (1 + 0.1 * (count - 1))
 
 
 

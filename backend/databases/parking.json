@@ -1,30 +1,29 @@
 {
-  "1": {
-    "status": "free",
-    "time": ""
-  },
-  "2": {
-    "status": "free",
-    "time": ""
-  },
-  "3": {
-    "status": "free",
-    "time": ""
-  },
-  "4": {
-    "status": "free",
-    "time": ""
-  },
-  "5": {
-    "status": "occupied"
-  },
-  "6": {
-    "status": "occupied"
-  },
-  "7": {
-    "status": "free"
-  },
-  "8": {
-    "status": "free"
-  }
+    "1": {
+        "status": "reserved",
+        "time": "2025-03-26 15:00"
+    },
+    "2": {
+        "status": "free",
+        "time": ""
+    },
+    "3": {
+        "status": "free"
+    },
+    "4": {
+        "status": "free",
+        "time": ""
+    },
+    "5": {
+        "status": "occupied"
+    },
+    "6": {
+        "status": "occupied"
+    },
+    "7": {
+        "status": "free"
+    },
+    "8": {
+        "status": "free"
+    }
 }
