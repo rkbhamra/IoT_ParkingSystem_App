@@ -23,10 +23,7 @@ def update_parking():
             if reservation_time <= current_time <= reservation_time + datetime.timedelta(minutes=30):
                 parking[spot]['status'] = 'reserved'
                 parking[spot]['time'] = (reservation_time + datetime.timedelta(minutes=30)).strftime('%Y-%m-%d %H:%M')
-                print('Spot reserved')
-                lst.remove(r)
             elif current_time > reservation_time + datetime.timedelta(minutes=30):
-                print('Reservation expired')
                 lst.remove(r)
     
     for k, v in data.items():
@@ -90,3 +87,32 @@ def update():
     utils.save_db('parking.json', parking)
     utils.save_db('reservations.json', reservations)
     return jsonify({'status': 'success'})
+
+
+@parking_bp.route('reserve/<username>/<spot>/<time>', methods=['DELETE'])
+def remove_reservation(username, spot, time):
+    users = utils.get_db('users.json')
+    global reservations
+    global parking
+    
+    re = users[username]['reservations']
+    for r in re:
+        if r['time'] == time:
+            re.remove(r)
+            break
+    users[username]['reservations'] = re
+
+    end_time = datetime.datetime.strptime(time, '%Y-%m-%d %H:%M') + datetime.timedelta(minutes=30)
+    if parking[spot]['status'] == 'reserved' and parking[spot]['time'] == end_time.strftime('%Y-%m-%d %H:%M'):
+        parking[spot]['status'] = 'free'
+        parking[spot]['time'] = ''
+    
+    for r in reservations[spot]:
+        if r['time'] == time:
+            reservations[spot].remove(r)
+            break
+            
+    utils.save_db('parking.json', parking)
+    utils.save_db('reservations.json', reservations)
+    utils.save_db('users.json', users)
+    return jsonify({'message': 'Reservation removed', 'success': True})

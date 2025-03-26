@@ -4,19 +4,7 @@
         "reservations": [
             {
                 "spot": "4",
-                "time": "2025-03-25 15:00",
-                "make": "toyota",
-                "plate": "abc123"
-            },
-            {
-                "spot": "4",
-                "time": "2025-03-25 15:00",
-                "make": "toyota",
-                "plate": "abc123"
-            },
-            {
-                "spot": "3",
-                "time": "2025-03-25 15:30",
+                "time": "2025-03-26 14:00",
                 "make": "toyota",
                 "plate": "abc123"
             }
