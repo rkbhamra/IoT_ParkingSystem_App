@@ -18,9 +18,11 @@ python main.py
 
 ## Getting Data from the Arduino API
 1. Change to a 2.4GHz network.
-2. Make sure the device is plugged in and online.
+2. Make sure the device is plugged in and is online.
 
 ## Schematics for Ardunio Sketches
+
+## Prototype for PoC
 ![image](https://github.com/user-attachments/assets/d0305c61-184c-4d4b-982f-6f00d9ef07bf)
 
 Figure 1.1 Prototype of the parking lot
