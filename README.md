@@ -1,4 +1,4 @@
-# coe892_group14
+# IoT Parking Lot
 
 ## Running the Application
 
